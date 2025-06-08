@@ -1,0 +1,60 @@
+@startuml
+
+' Стили
+skinparam classAttributeIconSize 0
+skinparam class {
+    BackgroundColor White
+    ArrowColor Black
+    BorderColor Black
+}
+
+' Основные тестовые классы
+abstract class "BaseTest" as BaseTest {
+    +setup()
+    +tearDown()
+}
+
+class "AuthTest" as AuthTest {
+    +testLogin()
+    +testRegister()
+    +testLogout()
+}
+
+class "ProductTest" as ProductTest {
+    +testGetProducts()
+    +testGetProductById()
+    +testSearchProducts()
+}
+
+class "CartTest" as CartTest {
+    +testAddToCart()
+    +testRemoveFromCart()
+    +testUpdateCart()
+    +testGetCart()
+}
+
+class "OrderTest" as OrderTest {
+    +testCreateOrder()
+    +testGetOrders()
+    +testGetOrderById()
+}
+
+class "UserTest" as UserTest {
+    +testGetProfile()
+    +testUpdateProfile()
+    +testChangePassword()
+}
+
+' Связи
+BaseTest <|-- AuthTest
+BaseTest <|-- ProductTest
+BaseTest <|-- CartTest
+BaseTest <|-- OrderTest
+BaseTest <|-- UserTest
+
+' Зависимости
+CartTest ..> ProductTest : uses
+OrderTest ..> CartTest : uses
+OrderTest ..> UserTest : uses
+
+@enduml 

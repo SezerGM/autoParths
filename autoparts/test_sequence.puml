@@ -1,0 +1,54 @@
+@startuml
+!theme plain
+skinparam backgroundColor white
+skinparam sequence {
+    ArrowColor #2C3E50
+    ActorBorderColor #2C3E50
+    LifeLineBorderColor #2C3E50
+    ParticipantBorderColor #2C3E50
+    ParticipantBackgroundColor #ECF0F1
+}
+
+title Структура тестов
+
+actor "Тест" as Test
+participant "Unit Tests" as Unit
+participant "Integration Tests" as Integration
+participant "API Tests" as API
+participant "UI Tests" as UI
+
+== Unit Tests ==
+Test -> Unit: Тестирование моделей
+activate Unit
+Unit -> Unit: UserModelTest
+Unit -> Unit: ProductModelTest
+Unit -> Unit: CategoryModelTest
+Unit -> Unit: OrderModelTest
+deactivate Unit
+
+== Integration Tests ==
+Test -> Integration: Тестирование сервисов
+activate Integration
+Integration -> Integration: AuthServiceTest
+Integration -> Integration: ProductServiceTest
+Integration -> Integration: OrderServiceTest
+deactivate Integration
+
+== API Tests ==
+Test -> API: Тестирование API endpoints
+activate API
+API -> API: AuthAPITest
+API -> API: ProductAPITest
+API -> API: OrderAPITest
+deactivate API
+
+== UI Tests ==
+Test -> UI: Тестирование UI компонентов
+activate UI
+UI -> UI: LoginScreenTest
+UI -> UI: ProductListScreenTest
+UI -> UI: CartScreenTest
+UI -> UI: OrderScreenTest
+deactivate UI
+
+@enduml 
